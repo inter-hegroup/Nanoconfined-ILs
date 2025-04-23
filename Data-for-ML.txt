@@ -1,0 +1,10 @@
+Data Preprocessing
+To ensure data integrity and mitigate potential bias, samples with missing values in any descriptive factors were excluded prior to model training. This step guarantees that the dataset used for subsequent analysis is complete and free from imputation artifacts.
+
+Machine Learning Model
+We implemented a Random Forest (RF) model for prediction, an ensemble learning method that aggregates predictions from multiple decision trees. Each tree in the RF is trained on a bootstrapped subset of the data, with node splits determined by a random subset of features, enhancing robustness against overfitting. For this study, the RF model was configured with 50 decision trees (n_estimators=50) and a fixed random seed (random_state=1) to ensure reproducibility.
+To systematically evaluate the impact of different types of descriptors on the predictive performance of the model, three sets of modeling experiments were designed based on the random forest algorithm. These experiments correspond to three variable combination scenarios: (i) exclusion of angstrom cavity-related features, (ii) exclusion of CAC-related features, and (iii) inclusion of all features. Given the substantial magnitude differences among the response values in their original scale, a logarithmic transformation was applied prior to model training to normalize the values and bring them to a comparable scale.
+
+Model Validation
+To rigorously evaluate the model’s performance, we employed leave-one-out cross-validation (LOOCV), a specialized case of k-fold cross-validation. In each iteration, a single sample was held out as the test set, while the remaining samples were used to train the model. This process was repeated iteratively until every sample had served as the test instance, providing a comprehensive assessment of generalization accuracy.
+
